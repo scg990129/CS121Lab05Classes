@@ -20,18 +20,89 @@ class Square:
         self._P2 = p2
         self._P3 = p3
         self._P4 = p4
+        self._points = [self._P1, self._P2, self._P3, self._P4]
 
-        def __init__(self, p1: Point, p2: Point, p3: Point):
-            self._P1 = p1
-            self._P2 = p2
-            self._P3 = p3
-            self._P4 = None
+        if not self._is_square():
+            raise Exception('Square is not square')
 
+        # Option B: store two points that define a side (then infer the rest) — only if you can justify it clearly
+        # python do not support overloading in constructor
+        # def __init__(self, corner1: Point, opposite_corner: Point):
+        #     self._P1 = corner1
+        #     self._P4 = opposite_corner
+        #     cx = (p1.getX() + p4.getX()) // 2
+        #     cy = (p1.getY() + p4.getY()) // 2
+        #     dx = (p1.getX() - p4.getX()) // 2
+        #     dy = (p1.getY() - p4.getY()) // 2
+        #     self._P2 = Point(cx - dy, cy + dx)
+        #     self._P3 = Point(cx + dy, cy - dx)
+        #     if not self._is_square():
+        #         raise Exception('Square is not square')
+
+    def _is_square(self) -> bool:
+        distances = []
+        for i in range(4):
+            for j in range(i + 1, 4):
+                # int compare better than float compare
+                eigen_distance = (self._points[i].getX() - self._points[j].getX()) ** 2 + (self._points[i].getY() - self._points[j].getY()) ** 2
+                distances.append(eigen_distance)
+        distances.sort()
+        return (len(set(distances)) == 2 and
+                distances[0] > 0 and
+                2 * distances[0] == distances[4])
+
+    # perimeter()
     def perimeter(self)-> float:
-        return self._P1.distance(self._P2) + self._P2.distance(self._P3) + self._P3.distance(self._P4)
-# Methods:
-# area()
-# perimeter()
-# Hint
-#
-# If your square stores 4 points in order, a side length can be computed using the distance between two adjacent points. Perimeter is 4 × side, and area is side² (for a true square).
+        distances = []
+        for i in range(4):
+            for j in range(i + 1, 4):
+                # int compare better than float compare
+                eigen_distance = (self._points[i].getX() - self._points[j].getX()) ** 2 + (self._points[i].getY() - self._points[j].getY()) ** 2
+                distances.append(eigen_distance)
+        distances.sort()
+        return min(distances) * 4
+
+    # area()
+    def area(self)-> float:
+        distances = []
+        for i in range(4):
+            for j in range(i + 1, 4):
+                # int compare better than float compare
+                eigen_distance = (self._points[i].getX() - self._points[j].getX()) ** 2 + (self._points[i].getY() - self._points[j].getY()) ** 2
+                distances.append(eigen_distance)
+        distances.sort()
+        return min(distances) ** 2
+
+def run_tests():
+    print("=== Square Class Test Suite ===")
+
+    # Test 1: Standard Axis-Aligned Square
+    # Points: (0,0), (2,0), (2,2), (0,2) -> Side = 2
+    try:
+        p1, p2, p3, p4 = Point(0,0), Point(2,0), Point(2,2), Point(0,2)
+        sq1 = Square(p1, p2, p3, p4)
+        print(f"Test 1 (Normal): PASS (Area: {sq1.area()}, Perimeter: {sq1.perimeter()})")
+    except Exception as e:
+        print(f"Test 1 (Normal): FAIL - {e}")
+
+    # Test 2: Invalid Square (A Rectangle)
+    # Points: (0,0), (4,0), (4,2), (0,2) -> Should raise Exception
+    try:
+        p1, p2, p3, p4 = Point(0,0), Point(4,0), Point(4,2), Point(0,2)
+        sq2 = Square(p1, p2, p3, p4)
+        print("Test 2 (Rectangle): FAIL (Should have raised Exception)")
+    except Exception:
+        print("Test 2 (Rectangle): PASS (Correctly rejected invalid square)")
+
+    # Test 3: Tilted Square (Rotated)
+    # Points: (1,0), (2,1), (1,2), (0,1) -> Side = sqrt(2) ≈ 1.414
+    # Area should be 2, Perimeter should be 4 * sqrt(2) ≈ 5.65
+    try:
+        p1, p2, p3, p4 = Point(1,0), Point(2,1), Point(1,2), Point(0,1)
+        sq3 = Square(p1, p2, p3, p4)
+        print(f"Test 3 (Tilted): PASS (Area: {sq3.area():.1f}, Perimeter: {sq3.perimeter():.2f})")
+    except Exception as e:
+        print(f"Test 3 (Tilted): FAIL - {e}")
+
+if __name__ == "__main__":
+    run_tests()

@@ -15,6 +15,12 @@ class Point:
         self._X = x
         self._Y = y
 
+    def getX(self):
+        return self._X
+
+    def getY(self):
+        return self._Y
+
     # Method: distance(other) → returns Euclidean distance to another point
     def distance(self, other: 'Point')-> float:
         return math.sqrt(self.__eigen_distance__(other))
@@ -25,7 +31,6 @@ class Point:
     # Method: slope(other) → returns slope between points
     def slope(self, other: 'Point')-> float:
         return math.inf if (other._X == self._X) else (other._Y - self._Y) / (other._X - self._X)
-
     # Slope is (y2 - y1) / (x2 - x1). Consider what happens when x2 == x1 (vertical line).
     # You may choose to raise an exception for vertical slope or return math.inf—just be consistent and test it.
 
@@ -40,7 +45,7 @@ class Point:
     def __eq__(self, other):
         return isinstance(other, Point) and self._X == other._X and self._Y == other._Y
 
-        # For test
+# For test
 if __name__ == "__main__":
     p1 = Point(0, 0)
     p2 = Point(3, 4)
