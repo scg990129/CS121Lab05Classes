@@ -20,7 +20,7 @@ class Square:
         self._P2 = p2
         self._P3 = p3
         self._P4 = p4
-        self._POINTS = [self._P1, self._P2, self._P3, self._P4]
+        self._Points = [self._P1, self._P2, self._P3, self._P4]
 
         if not self._is_square():
             raise Exception('Square is not square')
@@ -44,7 +44,7 @@ class Square:
         for i in range(4):
             for j in range(i + 1, 4):
                 # int compare better than float compare
-                eigen_distance = (self._POINTS[i].getX() - self._POINTS[j].getX()) ** 2 + (self._POINTS[i].getY() - self._POINTS[j].getY()) ** 2
+                eigen_distance = (self._Points[i].getX() - self._Points[j].getX()) ** 2 + (self._Points[i].getY() - self._Points[j].getY()) ** 2
                 distances.append(eigen_distance)
         distances.sort()
         return (len(set(distances)) == 2 and
@@ -57,7 +57,7 @@ class Square:
         for i in range(4):
             for j in range(i + 1, 4):
                 # int compare better than float compare
-                eigen_distance = (self._POINTS[i].getX() - self._POINTS[j].getX()) ** 2 + (self._POINTS[i].getY() - self._POINTS[j].getY()) ** 2
+                eigen_distance = (self._Points[i].getX() - self._Points[j].getX()) ** 2 + (self._Points[i].getY() - self._Points[j].getY()) ** 2
                 distances.append(eigen_distance)
         distances.sort()
         return math.sqrt(min(distances) )* 4
@@ -68,14 +68,14 @@ class Square:
         for i in range(4):
             for j in range(i + 1, 4):
                 # int compare better than float compare
-                eigen_distance = (self._POINTS[i].getX() - self._POINTS[j].getX()) ** 2 + (self._POINTS[i].getY() - self._POINTS[j].getY()) ** 2
+                eigen_distance = (self._Points[i].getX() - self._Points[j].getX()) ** 2 + (self._Points[i].getY() - self._Points[j].getY()) ** 2
                 distances.append(eigen_distance)
         distances.sort()
         return math.sqrt(min(distances)) ** 2
 
     def __repr__(self):
         """Developer-oriented representation."""
-        return f"Square: {self._POINTS}"
+        return f"Square: {self._Points}"
 
 def run_tests():
     print("=== Square Class Test Suite ===")

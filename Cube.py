@@ -17,14 +17,14 @@ from Square import Square
 class Cube:
 
     def __init__(self, identical_square_face: Square):
-        self._face = identical_square_face
+        self._Face = identical_square_face
 
     def volume(self)-> float:
-        side = math.sqrt(self._face.area())
-        return self._face.area() * side
+        side = math.sqrt(self._Face.area())
+        return self._Face.area() * side
 
     def surface_area(self)-> float:
-        return self._face.area() * 6
+        return self._Face.area() * 6
 
     def __repr__(self):
         """Developer-oriented representation."""
