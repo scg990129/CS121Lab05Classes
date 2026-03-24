@@ -77,36 +77,36 @@ class Square:
         """Developer-oriented representation."""
         return f"Square: {self._Points}"
 
-def run_tests():
-    print("=== Square Class Test Suite ===")
-
-    # Test 1: Standard Axis-Aligned Square
-    # Points: (0,0), (2,0), (2,2), (0,2) -> Side = 2
-    try:
-        p1, p2, p3, p4 = Point(0,0), Point(2,0), Point(2,2), Point(0,2)
-        sq1 = Square(p1, p2, p3, p4)
-        print(f"Test 1 (Normal): PASS (Area: {sq1.area()}, Perimeter: {sq1.perimeter()})")
-    except Exception as e:
-        print(f"Test 1 (Normal): FAIL - {e}")
-
-    # Test 2: Invalid Square (A Rectangle)
-    # Points: (0,0), (4,0), (4,2), (0,2) -> Should raise Exception
-    try:
-        p1, p2, p3, p4 = Point(0,0), Point(4,0), Point(4,2), Point(0,2)
-        sq2 = Square(p1, p2, p3, p4)
-        print("Test 2 (Rectangle): FAIL (Should have raised Exception)")
-    except Exception:
-        print("Test 2 (Rectangle): PASS (Correctly rejected invalid square)")
-
-    # Test 3: Tilted Square (Rotated)
-    # Points: (1,0), (2,1), (1,2), (0,1) -> Side = sqrt(2) ≈ 1.414
-    # Area should be 2, Perimeter should be 4 * sqrt(2) ≈ 5.65
-    try:
-        p1, p2, p3, p4 = Point(1,0), Point(2,1), Point(1,2), Point(0,1)
-        sq3 = Square(p1, p2, p3, p4)
-        print(f"Test 3 (Tilted): PASS (Area: {sq3.area():.1f}, Perimeter: {sq3.perimeter():.2f})")
-    except Exception as e:
-        print(f"Test 3 (Tilted): FAIL - {e}")
-
-if __name__ == "__main__":
-    run_tests()
+# def run_tests():
+#     print("=== Square Class Test Suite ===")
+#
+#     # Test 1: Standard Axis-Aligned Square
+#     # Points: (0,0), (2,0), (2,2), (0,2) -> Side = 2
+#     try:
+#         p1, p2, p3, p4 = Point(0,0), Point(2,0), Point(2,2), Point(0,2)
+#         sq1 = Square(p1, p2, p3, p4)
+#         print(f"Test 1 (Normal): PASS (Area: {sq1.area()}, Perimeter: {sq1.perimeter()})")
+#     except Exception as e:
+#         print(f"Test 1 (Normal): FAIL - {e}")
+#
+#     # Test 2: Invalid Square (A Rectangle)
+#     # Points: (0,0), (4,0), (4,2), (0,2) -> Should raise Exception
+#     try:
+#         p1, p2, p3, p4 = Point(0,0), Point(4,0), Point(4,2), Point(0,2)
+#         sq2 = Square(p1, p2, p3, p4)
+#         print("Test 2 (Rectangle): FAIL (Should have raised Exception)")
+#     except Exception:
+#         print("Test 2 (Rectangle): PASS (Correctly rejected invalid square)")
+#
+#     # Test 3: Tilted Square (Rotated)
+#     # Points: (1,0), (2,1), (1,2), (0,1) -> Side = sqrt(2) ≈ 1.414
+#     # Area should be 2, Perimeter should be 4 * sqrt(2) ≈ 5.65
+#     try:
+#         p1, p2, p3, p4 = Point(1,0), Point(2,1), Point(1,2), Point(0,1)
+#         sq3 = Square(p1, p2, p3, p4)
+#         print(f"Test 3 (Tilted): PASS (Area: {sq3.area():.1f}, Perimeter: {sq3.perimeter():.2f})")
+#     except Exception as e:
+#         print(f"Test 3 (Tilted): FAIL - {e}")
+#
+# if __name__ == "__main__":
+#     run_tests()

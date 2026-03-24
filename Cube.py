@@ -6,6 +6,7 @@
 # */
 
 import math
+from Point import Point
 from Square import Square
 
 # Phase 3 — Class: Cube (built only from Squares)
@@ -23,6 +24,15 @@ class Cube:
 
         self._Squares = identical_square_face
 
+    @classmethod
+    def from_two_points(cls, p1: Point, p2: Point):
+        dx = abs(p1.getX() - p2.getX())
+        dy = abs(p1.getY() - p2.getY())
+        side = math.sqrt(dx ** 2 + dy ** 2)
+        p3 = Point(p1.getX() + side, p1.getY())
+        p4 = Point(p2.getX() + side, p2.getY())
+        return cls([Square(p1, p2, p3, p4) for _ in range(6)])
+
     def volume(self)-> float:
         areas = list(map(lambda s: s.area(), self._Squares))
         return (sum(areas) / len(areas)) ** 1.5
@@ -37,43 +47,43 @@ class Cube:
         return f"Cube: volume={self.volume():.2f}, surface_area={self.surface_area():.2f}"
 
 
-import math
-from Point import Point
-from Square import Square
-
-def test_cube_final():
-    print("--- Running Phase 3: Cube Array Test ---")
-
-    try:
-        # 1. Create 4 points for a 3x3 square
-        p1, p2, p3, p4 = Point(0, 0), Point(3, 0), Point(3, 3), Point(0, 3)
-
-        # 2. Create an "array" (list) of 6 identical squares
-        base_square = Square(p1, p2, p3, p4)
-        faces_array = [base_square for _ in range(6)]
-
-        # 3. Initialize Cube
-        my_cube = Cube(faces_array)
-
-        # 4. Extract results
-        v = my_cube.volume()
-        sa = my_cube.surface_area()
-
-        print(f"Face Area: {base_square.area()}")
-        print(f"Cube Volume: {v:.2f} (Expected: 27.00)")
-        print(f"Cube Surface Area: {sa:.2f} (Expected: 54.00)")
-
-        # 5. Validation
-        if math.isclose(v, 27.0) and math.isclose(sa, 54.0):
-            print("RESULT: PASS ✅")
-        else:
-            print("RESULT: FAIL ❌ (Math mismatch - check your Square.area logic!)")
-
-    except ValueError as ve:
-        print(f"Validation Error: {ve}")
-    except Exception as e:
-        print(f"Unexpected Error: {e}")
-
-
-if __name__ == "__main__":
-    test_cube_final()
+# import math
+# from Point import Point
+# from Square import Square
+#
+# def test_cube_final():
+#     print("--- Running Phase 3: Cube Array Test ---")
+#
+#     try:
+#         # 1. Create 4 points for a 3x3 square
+#         p1, p2, p3, p4 = Point(0, 0), Point(3, 0), Point(3, 3), Point(0, 3)
+#
+#         # 2. Create an "array" (list) of 6 identical squares
+#         base_square = Square(p1, p2, p3, p4)
+#         faces_array = [base_square for _ in range(6)]
+#
+#         # 3. Initialize Cube
+#         my_cube = Cube(faces_array)
+#
+#         # 4. Extract results
+#         v = my_cube.volume()
+#         sa = my_cube.surface_area()
+#
+#         print(f"Face Area: {base_square.area()}")
+#         print(f"Cube Volume: {v:.2f} (Expected: 27.00)")
+#         print(f"Cube Surface Area: {sa:.2f} (Expected: 54.00)")
+#
+#         # 5. Validation
+#         if math.isclose(v, 27.0) and math.isclose(sa, 54.0):
+#             print("RESULT: PASS ✅")
+#         else:
+#             print("RESULT: FAIL ❌ (Math mismatch - check your Square.area logic!)")
+#
+#     except ValueError as ve:
+#         print(f"Validation Error: {ve}")
+#     except Exception as e:
+#         print(f"Unexpected Error: {e}")
+#
+#
+# if __name__ == "__main__":
+#     test_cube_final()

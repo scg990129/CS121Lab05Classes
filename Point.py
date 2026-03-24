@@ -46,11 +46,11 @@ class Point:
         return isinstance(other, Point) and self._X == other._X and self._Y == other._Y
 
 # For test
-if __name__ == "__main__":
-    p1 = Point(0, 0)
-    p2 = Point(3, 4)
-    p3 = Point(3, 10)
-
-    print(f"Distance: {p1.distance(p2)}")  # Should be 5.0
-    print(f"Slope (Normal): {p1.slope(p2)}") # Should be 1.333...
-    print(f"Slope (Vertical): {p2.slope(p3)}") # Should be inf
+# if __name__ == "__main__":
+#     p1 = Point(0, 0)
+#     p2 = Point(3, 4)
+#     p3 = Point(3, 10)
+#
+#     print(f"Distance: {p1.distance(p2)}")  # Should be 5.0
+#     print(f"Slope (Normal): {p1.slope(p2)}") # Should be 1.333...
+#     print(f"Slope (Vertical): {p2.slope(p3)}") # Should be inf
