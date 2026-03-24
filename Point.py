@@ -10,14 +10,17 @@ import math
 # Phase 1 — Class: Point (2D)
 # Write a class representing a 2D point with two fields (coordinates) and methods for distance and slope.
 class Point:
-    def __init__(self, x: float, y: float):
+    def __init__(self, x: int, y: int):
         # Fields: _X ans  _Y (underscore + capitalized)
         self._X = x
         self._Y = y
 
     # Method: distance(other) → returns Euclidean distance to another point
     def distance(self, other: 'Point')-> float:
-        return math.sqrt((self._X - other._X)**2 + (self._Y - other._Y)**2)
+        return math.sqrt(self.__eigen_distance__(other))
+
+    def __eigen_distance__(self, other: 'Point')-> int:
+        return (self._X - other._X)**2 + (self._Y - other._Y)**2
 
     # Method: slope(other) → returns slope between points
     def slope(self, other: 'Point')-> float:
@@ -34,7 +37,10 @@ class Point:
         """Developer-oriented representation."""
         return f"Point: x={self._X}, y={self._Y}"
 
-# For test
+    def __eq__(self, other):
+        return isinstance(other, Point) and self._X == other._X and self._Y == other._Y
+
+        # For test
 if __name__ == "__main__":
     p1 = Point(0, 0)
     p2 = Point(3, 4)
